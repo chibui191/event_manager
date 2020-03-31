@@ -70,7 +70,7 @@ puts "EventManager initialized!"
 puts "---*---"
 puts ""
 
-contents = CSV.open "event_attendees.csv", headers: true, header_converters: :symbol
+contents = CSV.open "event_attendees_full.csv", headers: true, header_converters: :symbol
 
 template_letter = File.read "form_letter.html.erb"
 erb_template = ERB.new template_letter
@@ -92,10 +92,10 @@ end
 
 peak_hours = sort_by_frequency(time_log)
 puts "PEAK HOUR(S): "
-peak_hours.each { |hr| puts hr[0] } 
+peak_hours.each { |hr| puts "#{hr[0]} - Frequency: #{hr[1]}/#{time_log.length} registrations" } 
 puts ""
 peak_days = sort_by_frequency(wday_log)
 puts "PEAK DAY(S):"
-peak_days.each { |day| puts day[0] }
+peak_days.each { |day| puts "#{day[0]} - Frequency: #{day[1]}/#{wday_log.length} registrations" }
 
 
